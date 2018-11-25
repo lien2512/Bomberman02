@@ -100,7 +100,7 @@ public class Bomb extends AnimatedEntitiy {
 		for (int i = 0; i < _flames.length; i++) {
 			_flames[i] = new Flame((int)_x, (int)_y, i, Game.getBombRadius(), _board);
 		}
-
+		Audio.playBombExplode();
 	}
 	
 	public FlameSegment flameAt(int x, int y) {
@@ -109,9 +109,13 @@ public class Bomb extends AnimatedEntitiy {
 		for (int i = 0; i < _flames.length; i++) {
 			if(_flames[i] == null) return null;
 			FlameSegment e = _flames[i].flameSegmentAt(x, y);
-			if(e != null) return e;
+			if(e != null)
+			{
+
+				return e;
+			}
 		}
-		Audio.playBombExplode();
+
 		return null;
 	}
 

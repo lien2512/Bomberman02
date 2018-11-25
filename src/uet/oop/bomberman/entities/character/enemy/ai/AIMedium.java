@@ -17,9 +17,9 @@ public class AIMedium extends AI {
 		if(_bomber == null)
 			return random.nextInt(4);
 
-		int vertical = random.nextInt(2);
+		int choose = random.nextInt(2);
 
-		if(vertical == 1) {
+		if(choose == 1) {
 			int v = calculateRowDirection();
 			if(v != -1)
 				return v;

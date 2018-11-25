@@ -10,6 +10,7 @@ import uet.oop.bomberman.exceptions.LoadLevelException;
 import uet.oop.bomberman.graphics.IRender;
 import uet.oop.bomberman.graphics.Screen;
 import uet.oop.bomberman.input.Keyboard;
+import uet.oop.bomberman.level.Audio;
 import uet.oop.bomberman.level.FileLevelLoader;
 import uet.oop.bomberman.level.LevelLoader;
 
@@ -83,7 +84,14 @@ public class Board implements IRender {
 	}
 	
 	public void nextLevel() {
-		loadLevel(_levelLoader.getLevel() + 1);
+		Audio.playVictory();
+		if(2 >= _levelLoader.getLevel() +1)
+		{
+			loadLevel(_levelLoader.getLevel()+1);
+		}
+		else
+			winGame();
+
 	}
 	
 	public void loadLevel(int level) {
@@ -117,6 +125,11 @@ public class Board implements IRender {
 		_game.resetScreenDelay();
 		_game.pause();
 	}
+	public void winGame() {
+		_screenToShow = 4;
+		_game.resetScreenDelay();
+		_game.pause();
+	}
 	
 	public boolean detectNoEnemies() {
 		int total = 0;
@@ -138,6 +151,9 @@ public class Board implements IRender {
 				break;
 			case 3:
 				_screen.drawPaused(g);
+				break;
+			case 4 :
+				_screen.drawWinGame(g,_points);
 				break;
 		}
 	}

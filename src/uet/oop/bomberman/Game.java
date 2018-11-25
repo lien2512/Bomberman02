@@ -59,6 +59,7 @@ public class Game extends Canvas {
 		_input = new Keyboard();
 		
 		_board = new Board(this, _input, screen);
+		Audio.playVictory();
 		addKeyListener(_input);
 	}
 	
@@ -111,7 +112,7 @@ public class Game extends Canvas {
 	
 	public void start() {
 		_running = true;
-		Audio.playVictory();
+		//Audio.playVictory();
 		long  lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
 		final double ns = 1000000000.0 / 60.0; //nanosecond, 60 frames per second
